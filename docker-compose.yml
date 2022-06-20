@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+
+  app:
+    container_name: app-producto-mjaramillo
+    image: app-producto-mjaramillo
+    build: ./
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/banco
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+         
+  db:
+    container_name: db
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=mjaramillo
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=banco
